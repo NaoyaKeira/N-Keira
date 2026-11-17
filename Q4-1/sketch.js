@@ -5,30 +5,43 @@ function setup(){
 
   // 配列をランダムに初期化する
   const scores = [];
+  // 配列の中身は空,ランダム
   for(let i = 0; i < 10; i++){
+    // 10個だすよ〜
     scores[i] = random(60, 100); // 60以上100未満のランダムな数を代入
   }
   console.log(scores);
+  // 表示
 
   // 合計を計算する
   let sum = 0;
   for(let i = 0; i < scores.length; i++){
     sum += scores[i];
+    // スコアを足し合わせていく。
   }
   console.log(sum);
 
   // ここから平均・最大・最小を求めます
-  let average, largest, smallest;
+  
   // BLANK[1]　平均値（ヒント average = 合計 / 配列の長さ）
+  // averageを定める。平均は合計をスコアの数で割った形。
+  const average = sum / scores.length;
 
-  largest = 0;
+  let largest = 0;
+  // まずは0とする。
   for(let i = 0; i < scores.length; i++){
     // BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
+  //  スコアの数の回数だけ0より大きいか？を繰り返していく。
+    if(largest < scores[i])
+  {largest = scores[i];}
   }
 
-  smallest = 100;
+  let smallest = 100;
+  // まずは100とおく
   for(let i = 0; i < scores.length; i++){
+    // スコアの数の回数だけ100より小さいか？を繰り返していく。
     // BLANK[3]　ヒント：最小値とだいたい同じ
+    if(smallest > scores[i]){smallest = scores[i];}
   }
 
   // ここから棒グラフを描いていきます。まずは背景に横線をn本引く
@@ -41,9 +54,15 @@ function setup(){
     const dx = width / scores.length;
     const h = height * scores[i] / 100;
     // BLANK[4] 最大値・最小値の色を変えましょう
-    rect(i * dx + 2, height - h, dx - 4, h);
     fill(0);
+    if(scores[i]==smallest){fill('#cf142b')}
+    if(scores[i]==largest){fill('blue')}
+    rect(i * dx + 2, height - h, dx - 4, h);
+  }
+   const ay = height - height * average / 100;
+  stroke(0, 255, 0);
+  line(0, ay, width, ay);
   }
 
-  // BLANK[5] 平均点の線を引きます
-}
+
+  
