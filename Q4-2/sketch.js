@@ -16,8 +16,7 @@ function setup(){
   // ここからが本番
   fill(0);
   const dx = width / scores.length;
-  // 線を引くために一つ前の点を覚えておく変数
-  let px, py; 
+  // 線を引くために一つ前の点を覚えておく変数 
 
    for(let i = 0; i < scores.length; i++){
     const h = height * scores[i] / 100;
@@ -29,11 +28,22 @@ function setup(){
     
     const h = height * scores[i] / 100;
     const h2 = height * scores[(i+1)] / 100;
-    
+     
     strokeWeight(3);
      line(i*dx+15,height-h,(i+1)*dx+15,height-h2);
-     
-  }
- 
+    
 
-}
+   
+  }
+  }
+//  赤くしたいなぁ...
+let largest = 0;
+  // まずは0とする。
+  for(let i = 0; i < scores.length; i++){
+    // BLANK[2]　ヒント：今までの最大値 largest と scores[i] を比較する
+  //  スコアの数の回数だけ0より大きいか？を繰り返していく。
+    if(largest < Math.abs(scores[(i+1)]-scores[i]))
+    
+  {largest = scores[i];}
+  if(scores[i]==largest){fill('#cf142b')} }
+
